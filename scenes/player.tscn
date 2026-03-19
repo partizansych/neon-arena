@@ -1,14 +1,23 @@
 [gd_scene format=3 uid="uid://di2rik1fabq2j"]
 
 [ext_resource type="Script" uid="uid://px6m1iiefgi4" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://gt3n4w6115p8" path="res://assets/sprites/16x16 Idle-Sheet.png" id="2_g2els"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nckey"]
-radius = 32.0
+radius = 13.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("2_g2els")
+region = Rect2(0, 0, 20, 20)
 
 [node name="Player" type="CharacterBody2D" unique_id=1560013250]
 script = ExtResource("1_3vyb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1488387638]
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_nckey")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=251279576]
+position = Vector2(0, -25.000002)
+scale = Vector2(2.5, 2.5)
+texture = SubResource("AtlasTexture_qhqgy")
