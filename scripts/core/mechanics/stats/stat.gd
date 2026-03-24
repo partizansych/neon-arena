@@ -92,10 +92,3 @@ class ActiveModifier:
 	func _init(mod: Modifier, source: Variant = null) -> void:
 		self.mod = mod
 		self.source = source
-
-enum Type {
-	SPEED,
-	MAX_HP,
-	HP_REGEN,
-	ARMOR
-}
