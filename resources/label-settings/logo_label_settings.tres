@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://ceov1jkeljfpx"]
+
+[ext_resource type="FontFile" uid="uid://curhi2u26bddn" path="res://assets/fonts/georgia/georgiab.ttf" id="1_pjqhn"]
+
+[resource]
+font = ExtResource("1_pjqhn")
+font_size = 96
+shadow_color = Color(0.4375, 0.10253906, 0.18889618, 1)
+shadow_offset = Vector2(0, 14.44)

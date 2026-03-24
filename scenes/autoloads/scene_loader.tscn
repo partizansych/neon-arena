@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://3je0v1kl1xv"]
+
+[ext_resource type="Script" uid="uid://bgukr0x036r4u" path="res://scripts/core/scene_loader.gd" id="1_qelyj"]
+[ext_resource type="PackedScene" uid="uid://b5pdql4qpsbym" path="res://scenes/ui/loading_screen.tscn" id="2_f3tc2"]
+
+[node name="SceneLoader" type="Node" unique_id=1788216948]
+script = ExtResource("1_qelyj")
+loading_screen_scene = ExtResource("2_f3tc2")

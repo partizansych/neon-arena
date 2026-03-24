@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://onedf7dy6c57"]
+
+[ext_resource type="PackedScene" uid="uid://1o2e4v26vex1" path="res://scenes/level_1.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://di2rik1fabq2j" path="res://scenes/entities/player.tscn" id="2_e2o6t"]
+
+[node name="Game" type="Node2D" unique_id=1325132745]
+process_mode = 3
+
+[node name="Playground" type="Node2D" parent="." unique_id=1910238621]
+unique_name_in_owner = true
+process_mode = 1
+
+[node name="Level1" parent="Playground" unique_id=796088748 instance=ExtResource("1_yqjtg")]
+
+[node name="Camera2D" type="Camera2D" parent="Playground" unique_id=609817685]
+
+[node name="Player" parent="Playground" unique_id=1560013250 instance=ExtResource("2_e2o6t")]
+position = Vector2(60, 8)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=546700968]

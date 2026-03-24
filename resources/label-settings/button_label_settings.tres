@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://drqbvr4g6q7ga"]
+
+[ext_resource type="FontFile" uid="uid://c8347lkdgj0rb" path="res://assets/fonts/georgia/georgia.ttf" id="1_mogbs"]
+
+[resource]
+font = ExtResource("1_mogbs")
+font_size = 45
+shadow_color = Color(0.4392157, 0.101960786, 0.1882353, 1)
+shadow_offset = Vector2(1, 7.09)

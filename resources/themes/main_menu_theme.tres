@@ -1,0 +1,30 @@
+[gd_resource type="Theme" format=3 uid="uid://djoq1r1d0yna7"]
+
+[ext_resource type="FontFile" uid="uid://bgyxk72lc8dyl" path="res://assets/fonts/garamond/Garamond - Garamond - Regular.ttf" id="1_jb541"]
+[ext_resource type="FontFile" uid="uid://cbfetrlc6blmc" path="res://assets/fonts/garamond/Garamond-Bold - Garamond - Bold.ttf" id="2_10r7d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rbcg5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10r7d"]
+bg_color = Color(0.515625, 0.15509033, 0.16354036, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jb541"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipxn5"]
+bg_color = Color(0.48046875, 0.13137817, 0.17228723, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10r7d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbcg5"]
+bg_color = Color(0.5294118, 0.1882353, 0.1764706, 1)
+
+[resource]
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_jb541")
+Button/styles/focus = SubResource("StyleBoxEmpty_rbcg5")
+Button/styles/hover = SubResource("StyleBoxFlat_10r7d")
+Button/styles/normal = SubResource("StyleBoxEmpty_jb541")
+Button/styles/pressed = SubResource("StyleBoxFlat_ipxn5")
+Label/fonts/font = ExtResource("2_10r7d")
+Label/styles/focus = SubResource("StyleBoxEmpty_10r7d")
+Panel/styles/panel = SubResource("StyleBoxFlat_rbcg5")
