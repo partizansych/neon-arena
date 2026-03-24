@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://nl701xoero44"]
+
+[ext_resource type="Script" uid="uid://d1on6mispyqew" path="res://scripts/core/app.gd" id="1_ka3r4"]
+[ext_resource type="PackedScene" uid="uid://bbh1ep81f6f3g" path="res://scenes/ui/main_menu.tscn" id="2_jc7hx"]
+[ext_resource type="PackedScene" uid="uid://onedf7dy6c57" path="res://scenes/game.tscn" id="3_86ptg"]
+
+[node name="App" type="Node" unique_id=565428834]
+script = ExtResource("1_ka3r4")
+main_menu_scene = ExtResource("2_jc7hx")
+game_scene = ExtResource("3_86ptg")

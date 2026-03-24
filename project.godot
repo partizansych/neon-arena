@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Neon Arena"
-run/main_scene="uid://onedf7dy6c57"
+run/main_scene="uid://bbh1ep81f6f3g"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SceneLoader="*uid://3je0v1kl1xv"
+App="*uid://nl701xoero44"
 
 [debug]
 
