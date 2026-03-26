@@ -18,5 +18,8 @@ func _get_random_position() -> Vector2:
 	var direction := Vector2(cos(random_angle), sin(random_angle))
 	return player.global_position + direction * distance
 
+func _on_timer_timeout() -> void:
+	spawn(_get_random_position())
+
 func _ready() -> void:
-	timer.timeout.connect(spawn.bind(_get_random_position()))
+	timer.timeout.connect(_on_timer_timeout)
