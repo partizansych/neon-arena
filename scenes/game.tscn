@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://onedf7dy6c57"]
 
+[ext_resource type="Script" uid="uid://wdr76olwybsn" path="res://scripts/gameplay/managers/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://1o2e4v26vex1" path="res://scenes/level_1.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://di2rik1fabq2j" path="res://scenes/entities/player.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://2i4r80mn5c8m" path="res://scenes/ui/pause_menu.tscn" id="2_lbhrr"]
 
-[node name="Game" type="Node2D" unique_id=1325132745]
+[node name="Game" type="Node2D" unique_id=1325132745 node_paths=PackedStringArray("canvas")]
 process_mode = 3
+script = ExtResource("1_lnu2h")
+canvas = NodePath("CanvasLayer")
+pause_menu_scene = ExtResource("2_lbhrr")
 
 [node name="Playground" type="Node2D" parent="." unique_id=1910238621]
 unique_name_in_owner = true

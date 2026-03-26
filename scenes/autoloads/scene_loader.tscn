@@ -4,5 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b5pdql4qpsbym" path="res://scenes/ui/loading_screen.tscn" id="2_f3tc2"]
 
 [node name="SceneLoader" type="Node" unique_id=1788216948]
+process_mode = 3
 script = ExtResource("1_qelyj")
 loading_screen_scene = ExtResource("2_f3tc2")

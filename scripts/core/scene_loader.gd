@@ -8,10 +8,10 @@ extends Node
 var _is_loading: bool = false
 var _loading_screen: LoadingScreen = null
 
-func change_scene_async(path: String) -> void:
+func change_scene_async(path: String) -> bool:
 	if _is_loading:
 		push_warning("SceneLoader: Already loading a scene. Request ignored.")
-		return
+		return false
 	
 	_is_loading = true
 	await _show_loading_screen()
@@ -20,7 +20,7 @@ func change_scene_async(path: String) -> void:
 	if error != OK:
 		push_error("SceneLoader: Failed to start threaded load: %s" % error_string(error))
 		_reset()
-		return
+		return false
 
 	var progress: Array[float] = [0.0]
 	while _is_loading:
@@ -38,6 +38,8 @@ func change_scene_async(path: String) -> void:
 				var resource := ResourceLoader.load_threaded_get(path)
 				get_tree().change_scene_to_packed(resource)
 				await _reset()
+				return true
+	return false
 
 func _reset() -> void:
 	_is_loading = false
