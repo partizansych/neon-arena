@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneLoader="*uid://3je0v1kl1xv"
+SceneLoader="*uid://ccdn6svdvxk18"
 App="*uid://nl701xoero44"
 
 [debug]
