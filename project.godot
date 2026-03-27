@@ -64,6 +64,15 @@ move_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="PlayerBody"
+2d_physics/layer_2="EnemyBody"
+2d_physics/layer_3="PlayerAttack"
+2d_physics/layer_4="EnemyAttack"
+2d_physics/layer_5="Pickup"
+2d_physics/layer_6="Trigger"
+
 [physics]
 
 common/physics_jitter_fix=0.0
