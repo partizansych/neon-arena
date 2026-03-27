@@ -2,6 +2,7 @@ class_name EnemySpawner extends Node2D
 
 @export var timer: Timer
 @export var enemy_scene: PackedScene
+@export var enemy_configs: Array[EnemyConfig]
 @export var distance: float = 400.0
 @export var max_enemies: int = 50
 
@@ -9,6 +10,7 @@ class_name EnemySpawner extends Node2D
 
 func spawn(pos: Vector2) -> void:
 	var enemy: Enemy = enemy_scene.instantiate()
+	enemy.setup(enemy_configs.pick_random())
 	enemy.global_position = pos
 	enemy.player_ref = player
 	get_tree().current_scene.add_child(enemy)

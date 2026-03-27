@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c5bd5w8h7ew35"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_e6l8a"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6l8a"]
+size = Vector2(10, 10)
+
+[node name="MagicMissile" type="Area2D" unique_id=531018866]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1402259269]
+texture = SubResource("PlaceholderTexture2D_e6l8a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=898051765]
+shape = SubResource("RectangleShape2D_e6l8a")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=853570703]

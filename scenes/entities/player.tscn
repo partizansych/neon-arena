@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://di2rik1fabq2j"]
 
-[ext_resource type="Script" uid="uid://px6m1iiefgi4" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://px6m1iiefgi4" path="res://scripts/gameplay/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://gt3n4w6115p8" path="res://assets/textures/16x16 Idle-Sheet.png" id="2_g2els"]
+[ext_resource type="Script" uid="uid://cicgreofvhr3c" path="res://scripts/gameplay/health_component.gd" id="3_1ie0h"]
+[ext_resource type="Script" uid="uid://bmvg5canqi8y8" path="res://scripts/gameplay/health_bar.gd" id="4_42nxq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nckey"]
 radius = 13.0
@@ -10,14 +12,46 @@ radius = 13.0
 atlas = ExtResource("2_g2els")
 region = Rect2(0, 0, 20, 20)
 
-[node name="Player" type="CharacterBody2D" unique_id=1560013250]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42nxq"]
+radius = 15.0
+height = 42.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("health_comp", "hurtbox")]
+collision_mask = 24
 script = ExtResource("1_3vyb7")
+health_comp = NodePath("HealthComponent")
+hurtbox = NodePath("Hurtbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1488387638]
-position = Vector2(0, -8)
+position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_nckey")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=251279576]
-position = Vector2(0, -25.000002)
 scale = Vector2(2.5, 2.5)
 texture = SubResource("AtlasTexture_qhqgy")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1649323289]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1767769421]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_42nxq")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=484350597]
+script = ExtResource("3_1ie0h")
+metadata/_custom_type_script = "uid://cicgreofvhr3c"
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=88681699 node_paths=PackedStringArray("health_comp")]
+offset_left = -31.0
+offset_top = -53.0
+offset_right = 31.0
+offset_bottom = -47.0
+value = 100.0
+show_percentage = false
+script = ExtResource("4_42nxq")
+health_comp = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bmvg5canqi8y8"
+
+[node name="IFrameTimer" type="Timer" parent="." unique_id=1083941380]
+autostart = true

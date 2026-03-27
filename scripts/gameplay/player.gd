@@ -1,5 +1,18 @@
 class_name Player extends CharacterBody2D
 
+@export var health_comp: HealthComponent
+@export var hurtbox: Area2D
+
+# func damage(amount: float) -> void:
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		health_comp.current_health -= body.damage
+
+func _on_iframe_ended() -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -8,3 +21,6 @@ func _physics_process(delta: float) -> void:
 	velocity.y = direction.y * speed
 
 	move_and_slide()
+
+func _ready() -> void:
+	hurtbox.body_entered.connect(_on_body_entered)

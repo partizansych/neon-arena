@@ -23,7 +23,6 @@ process_mode = 1
 
 [node name="Level1" parent="Playground" unique_id=796088748 instance=ExtResource("1_yqjtg")]
 
-[node name="Camera2D" type="Camera2D" parent="Playground" unique_id=609817685]
-
 [node name="Player" parent="Playground" unique_id=1560013250 instance=ExtResource("2_e2o6t")]
-position = Vector2(60, 8)
+
+[node name="Camera2D" type="Camera2D" parent="Playground/Player" unique_id=609817685]
