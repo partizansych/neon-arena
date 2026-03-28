@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://di2rik1fabq2j"]
 
 [ext_resource type="Script" uid="uid://px6m1iiefgi4" path="res://scripts/gameplay/player.gd" id="1_3vyb7"]
+[ext_resource type="Resource" uid="uid://d0hdtlhr3daq5" path="res://resources/data/magic_missile.tres" id="2_5u6hq"]
 [ext_resource type="Texture2D" uid="uid://gt3n4w6115p8" path="res://assets/textures/16x16 Idle-Sheet.png" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cicgreofvhr3c" path="res://scripts/gameplay/health_component.gd" id="3_1ie0h"]
 [ext_resource type="Script" uid="uid://bmvg5canqi8y8" path="res://scripts/gameplay/health_bar.gd" id="4_42nxq"]
@@ -16,11 +17,13 @@ region = Rect2(0, 0, 20, 20)
 radius = 15.0
 height = 42.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("health_comp", "hurtbox")]
+[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("health_comp", "hurtbox", "weapon_cooldown_timer")]
 collision_mask = 24
 script = ExtResource("1_3vyb7")
 health_comp = NodePath("HealthComponent")
 hurtbox = NodePath("Hurtbox")
+weapon_cooldown_timer = NodePath("WeaponTimer")
+weapon = ExtResource("2_5u6hq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1488387638]
 position = Vector2(0, 12)
@@ -54,4 +57,7 @@ health_comp = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bmvg5canqi8y8"
 
 [node name="IFrameTimer" type="Timer" parent="." unique_id=1083941380]
+autostart = true
+
+[node name="WeaponTimer" type="Timer" parent="." unique_id=1469174754]
 autostart = true

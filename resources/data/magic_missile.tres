@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MagicMissileDefinition" format=3 uid="uid://d0hdtlhr3daq5"]
+
+[ext_resource type="PackedScene" uid="uid://c5bd5w8h7ew35" path="res://scenes/magic_missile.tscn" id="1_pqlyc"]
+[ext_resource type="Texture2D" uid="uid://ddh5k3ht0ufeo" path="res://assets/textures/64x64.png" id="2_fdjqg"]
+[ext_resource type="Script" uid="uid://cbk052k0oi22v" path="res://scripts/gameplay/data/magic_missile_definition.gd" id="2_pqlyc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuh6k"]
+atlas = ExtResource("2_fdjqg")
+region = Rect2(896, 4608, 64, 64)
+
+[resource]
+script = ExtResource("2_pqlyc")
+name = "Magic Missile"
+texture = SubResource("AtlasTexture_fuh6k")
+damage = 2.0
+cooldown = 1.0
+speed = 400.0
+scene = ExtResource("1_pqlyc")
+metadata/_custom_type_script = "uid://b6lm4cuarim0o"
