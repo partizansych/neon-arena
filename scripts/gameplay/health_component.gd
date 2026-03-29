@@ -12,7 +12,6 @@ var current_health: float:
 		if value == current_health:return
 		if value == 0.0:
 			die()
-			return
 		var old: float = current_health
 		current_health = value
 		changed.emit(old, current_health)
