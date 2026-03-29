@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://gt3n4w6115p8" path="res://assets/textures/16x16 Idle-Sheet.png" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cicgreofvhr3c" path="res://scripts/gameplay/health_component.gd" id="3_1ie0h"]
 [ext_resource type="Script" uid="uid://bmvg5canqi8y8" path="res://scripts/gameplay/health_bar.gd" id="4_42nxq"]
-[ext_resource type="Script" uid="uid://wv7jkmicyn5s" path="res://scripts/gameplay/health_popup.gd" id="6_ss7kx"]
-[ext_resource type="PackedScene" uid="uid://bi8c4160mxpu3" path="res://scenes/ui/damage_popup.tscn" id="7_dnykm"]
+[ext_resource type="Script" path="res://scripts/gameplay/health_popup.gd" id="6_ss7kx"]
+[ext_resource type="PackedScene" path="res://scenes/ui/damage_popup.tscn" id="7_dnykm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nckey"]
 radius = 13.0
