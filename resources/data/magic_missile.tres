@@ -16,4 +16,3 @@ damage = 2.0
 cooldown = 1.0
 speed = 400.0
 scene = ExtResource("1_pqlyc")
-metadata/_custom_type_script = "uid://b6lm4cuarim0o"
