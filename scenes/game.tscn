@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://di2rik1fabq2j" path="res://scenes/entities/player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://2i4r80mn5c8m" path="res://scenes/ui/pause_menu.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://8b6ol3wax8wd" path="res://scenes/enemy_spawner.tscn" id="3_iywne"]
-[ext_resource type="PackedScene" uid="uid://c5bd5w8h7ew35" path="res://scenes/magic_missile.tscn" id="6_p57ef"]
 
 [node name="Game" type="Node2D" unique_id=1325132745 node_paths=PackedStringArray("canvas")]
 process_mode = 3
@@ -27,5 +26,3 @@ process_mode = 1
 [node name="Player" parent="Playground" unique_id=1560013250 instance=ExtResource("2_e2o6t")]
 
 [node name="Camera2D" type="Camera2D" parent="Playground/Player" unique_id=609817685]
-
-[node name="MagicMissile" parent="Playground" unique_id=531018866 instance=ExtResource("6_p57ef")]
