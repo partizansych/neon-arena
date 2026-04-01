@@ -19,11 +19,11 @@ region = Rect2(0, 0, 20, 20)
 radius = 15.0
 height = 42.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("health_comp", "hurtbox", "weapon_cooldown_timer")]
+[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("health_comp", "iframe_timer", "weapon_cooldown_timer")]
 collision_mask = 24
 script = ExtResource("1_3vyb7")
 health_comp = NodePath("Health/HealthComponent")
-hurtbox = NodePath("Hurtbox")
+iframe_timer = NodePath("IFrameTimer")
 weapon_cooldown_timer = NodePath("WeaponTimer")
 weapon = ExtResource("2_5u6hq")
 
@@ -67,6 +67,8 @@ damage_popup_scene = ExtResource("7_dnykm")
 metadata/_custom_type_script = "uid://wv7jkmicyn5s"
 
 [node name="IFrameTimer" type="Timer" parent="." unique_id=1083941380]
+wait_time = 0.25
+one_shot = true
 autostart = true
 
 [node name="WeaponTimer" type="Timer" parent="." unique_id=1469174754]

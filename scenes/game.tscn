@@ -5,6 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://di2rik1fabq2j" path="res://scenes/entities/player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://2i4r80mn5c8m" path="res://scenes/ui/pause_menu.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://8b6ol3wax8wd" path="res://scenes/enemy_spawner.tscn" id="3_iywne"]
+[ext_resource type="Script" uid="uid://dk7fnwdbakl42" path="res://scripts/gameplay/enemy_manager.gd" id="4_p57ef"]
+[ext_resource type="Texture2D" uid="uid://b41w62aostf37" path="res://assets/textures/Discord_Pz0mRhD75Y.png" id="5_u5sy4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_p57ef"]
+size = Vector2(64, -64)
+
+[sub_resource type="MultiMesh" id="MultiMesh_u5sy4"]
+mesh = SubResource("QuadMesh_p57ef")
 
 [node name="Game" type="Node2D" unique_id=1325132745 node_paths=PackedStringArray("canvas")]
 process_mode = 3
@@ -16,6 +24,16 @@ pause_menu_scene = ExtResource("2_lbhrr")
 
 [node name="EnemySpawner" parent="." unique_id=912797544 node_paths=PackedStringArray("player") instance=ExtResource("3_iywne")]
 player = NodePath("../Playground/Player")
+
+[node name="EnemyManager" type="Node" parent="." unique_id=239048932 node_paths=PackedStringArray("multi_mesh", "player")]
+script = ExtResource("4_p57ef")
+multi_mesh = NodePath("MultiMeshInstance2D")
+player = NodePath("../Playground/Player")
+metadata/_custom_type_script = "uid://dk7fnwdbakl42"
+
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="EnemyManager" unique_id=739872370]
+multimesh = SubResource("MultiMesh_u5sy4")
+texture = ExtResource("5_u5sy4")
 
 [node name="Playground" type="Node2D" parent="." unique_id=1910238621]
 unique_name_in_owner = true

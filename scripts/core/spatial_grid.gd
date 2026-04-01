@@ -51,8 +51,8 @@ func update(index: int, new_pos: Vector2) -> void:
 ##
 ## @warning Возвращает объекты из квадратной области, описывающей круг. 
 ## Требуется дополнительная точная проверка дистанции после вызова!
-func get_objects_in_radius(pos: Vector2, radius: float) -> Array[int]:
-	var result: Array = []
+func get_objects_in_radius(pos: Vector2, radius: float) -> PackedInt32Array:
+	var result: PackedInt32Array = []
 	var center_cell := get_cell(pos)
 
 	# Если бы радиус пули был 150 пикселей: 150 / 100 = 1.5 → ceil(1.5) = 2.
@@ -67,6 +67,8 @@ func get_objects_in_radius(pos: Vector2, radius: float) -> Array[int]:
 				result.append_array(_grid[cell])
 
 	return result
+
+
 
 # Получение объектов в конкретной ячейке
 func get_objects_in_cell(cell: Vector2i) -> Array:

@@ -9,6 +9,8 @@ size = Vector2(10, 10)
 size = Vector2(10, 10)
 
 [node name="MagicMissile" type="Area2D" unique_id=531018866 node_paths=PackedStringArray("lifetime_timer")]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_se5q5")
 lifetime_timer = NodePath("LifetimeTimer")
 
