@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d3htk7kdhhsi2"]
+
+[ext_resource type="Script" uid="uid://fie2e72domnc" path="res://scripts/vampire_survivor.gd" id="1_lgbxt"]
+[ext_resource type="Texture2D" uid="uid://b41w62aostf37" path="res://assets/textures/Discord_Pz0mRhD75Y.png" id="2_72dsy"]
+[ext_resource type="Script" uid="uid://cqrolaqey6r82" path="res://scripts/multi_mesh_manager.gd" id="3_130mk"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_130mk"]
+size = Vector2(64, 64)
+
+[sub_resource type="MultiMesh" id="MultiMesh_lgbxt"]
+mesh = SubResource("QuadMesh_130mk")
+
+[node name="VampireSurvivor" type="Node2D" unique_id=2117724696 node_paths=PackedStringArray("enemy_renderer")]
+script = ExtResource("1_lgbxt")
+enemy_renderer = NodePath("Renderers/EnemyRenderer")
+metadata/_custom_type_script = "uid://fie2e72domnc"
+
+[node name="Renderers" type="Node2D" parent="." unique_id=589463560]
+
+[node name="EnemyRenderer" type="MultiMeshInstance2D" parent="Renderers" unique_id=839516533]
+unique_name_in_owner = true
+multimesh = SubResource("MultiMesh_lgbxt")
+texture = ExtResource("2_72dsy")
+script = ExtResource("3_130mk")

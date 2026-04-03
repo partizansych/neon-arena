@@ -4,15 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://1o2e4v26vex1" path="res://scenes/level_1.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://di2rik1fabq2j" path="res://scenes/entities/player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://2i4r80mn5c8m" path="res://scenes/ui/pause_menu.tscn" id="2_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://8b6ol3wax8wd" path="res://scenes/enemy_spawner.tscn" id="3_iywne"]
-[ext_resource type="Script" uid="uid://dk7fnwdbakl42" path="res://scripts/gameplay/enemy_manager.gd" id="4_p57ef"]
-[ext_resource type="Texture2D" uid="uid://b41w62aostf37" path="res://assets/textures/Discord_Pz0mRhD75Y.png" id="5_u5sy4"]
+[ext_resource type="Script" uid="uid://fie2e72domnc" path="res://scripts/vampire_survivor.gd" id="3_p57ef"]
+[ext_resource type="Script" uid="uid://cqrolaqey6r82" path="res://scripts/multi_mesh_manager.gd" id="4_u5sy4"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_p57ef"]
+[sub_resource type="QuadMesh" id="QuadMesh_gee14"]
 size = Vector2(64, -64)
 
-[sub_resource type="MultiMesh" id="MultiMesh_u5sy4"]
-mesh = SubResource("QuadMesh_p57ef")
+[sub_resource type="MultiMesh" id="MultiMesh_0tnpc"]
+mesh = SubResource("QuadMesh_gee14")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vtaks"]
+load_path = "res://.godot/imported/Discord_Pz0mRhD75Y.png-aa2525ca3a7cac2256487c187f072dff.ctex"
 
 [node name="Game" type="Node2D" unique_id=1325132745 node_paths=PackedStringArray("canvas")]
 process_mode = 3
@@ -21,19 +23,6 @@ canvas = NodePath("CanvasLayer")
 pause_menu_scene = ExtResource("2_lbhrr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=546700968]
-
-[node name="EnemySpawner" parent="." unique_id=912797544 node_paths=PackedStringArray("player") instance=ExtResource("3_iywne")]
-player = NodePath("../Playground/Player")
-
-[node name="EnemyManager" type="Node" parent="." unique_id=239048932 node_paths=PackedStringArray("multi_mesh", "player")]
-script = ExtResource("4_p57ef")
-multi_mesh = NodePath("MultiMeshInstance2D")
-player = NodePath("../Playground/Player")
-metadata/_custom_type_script = "uid://dk7fnwdbakl42"
-
-[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="EnemyManager" unique_id=739872370]
-multimesh = SubResource("MultiMesh_u5sy4")
-texture = ExtResource("5_u5sy4")
 
 [node name="Playground" type="Node2D" parent="." unique_id=1910238621]
 unique_name_in_owner = true
@@ -44,3 +33,15 @@ process_mode = 1
 [node name="Player" parent="Playground" unique_id=1560013250 instance=ExtResource("2_e2o6t")]
 
 [node name="Camera2D" type="Camera2D" parent="Playground/Player" unique_id=609817685]
+
+[node name="VampireSurvivor" type="Node2D" parent="." unique_id=2117724696 node_paths=PackedStringArray("enemy_renderer", "player")]
+script = ExtResource("3_p57ef")
+enemy_renderer = NodePath("EnemyRenderer")
+player = NodePath("../Playground/Player")
+metadata/_custom_type_script = "uid://fie2e72domnc"
+
+[node name="EnemyRenderer" type="MultiMeshInstance2D" parent="VampireSurvivor" unique_id=839516533]
+unique_name_in_owner = true
+multimesh = SubResource("MultiMesh_0tnpc")
+texture = SubResource("CompressedTexture2D_vtaks")
+script = ExtResource("4_u5sy4")

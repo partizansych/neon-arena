@@ -54,9 +54,9 @@ func _process(delta: float) -> void:
 		if active[i]:
 			# Движение к игроку
 			var dir_to_player := positions[i].direction_to(player_pos)
-			positions[i] += dir_to_player * ENEMY_SPEED * delta
 
-			# Так как работаю с двумя мирами сразу, нужно обновить и во втором мире
+			# Так как работаю с двумя мирами сразу, нужно обновить и во втором мире (и третий)
+			positions[i] += dir_to_player * ENEMY_SPEED * delta
 			spatial_grid.update(i, positions[i])
 			var transform := Transform2D(0, positions[i])
 			multi_mesh.multimesh.set_instance_transform_2d(i, transform)

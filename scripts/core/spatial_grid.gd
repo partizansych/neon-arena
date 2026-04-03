@@ -4,43 +4,29 @@ const EMPTY_CELL = Vector2i(-99999, -99999)
 
 var _cell_size: float
 var _grid: Dictionary[Vector2i, Array]
-var _object_cells: Array[Vector2i] = []
+var _object_last_cell_list: Array[Vector2i] = []
 
 func _init(_cell_size: float, max_objects: int) -> void:
 	_cell_size = _cell_size
-	_object_cells.resize(max_objects)
+	_object_last_cell_list.resize(max_objects)
 	for i in max_objects:
-		_object_cells[i] = EMPTY_CELL
+		_object_last_cell_list[i] = EMPTY_CELL
 
 func get_cell(pos: Vector2) -> Vector2i:
 	return (pos / _cell_size).floor()
 
-func add(index: int, cell: Vector2i) -> void:
-	if not _grid.has(cell):
-		_grid[cell] = []
-	var list: Array = _grid[cell]
-	if not list.has(index):
-		list.append(index)
-
-func remove(index: int, cell: Vector2i) -> void:
-	if _grid.has(cell):
-		var list = _grid[cell]
-		list.erase(index)
-		if list.is_empty():
-			_grid.erase(cell)
-
 ## Обновление позиции объекта
 func update(index: int, new_pos: Vector2) -> void:
 	var new_cell := get_cell(new_pos)
-	var old_cell := _object_cells[index]
+	var old_cell := _object_last_cell_list[index]
 	if new_cell == old_cell:
 		return
 	
 	if old_cell != EMPTY_CELL:
-		remove(index, old_cell)
+		_remove(index, old_cell)
 	
-	add(index, new_cell)
-	_object_cells[index] = new_cell
+	_add(index, new_cell)
+	_object_last_cell_list[index] = new_cell
 
 ## Возвращает список индексов объектов, которые находятся в пределах заданного радиуса от точки.
 ## Использует пространственную сетку для быстрой отсечки заведомо далеких объектов.
@@ -68,8 +54,6 @@ func get_objects_in_radius(pos: Vector2, radius: float) -> PackedInt32Array:
 
 	return result
 
-
-
 # Получение объектов в конкретной ячейке
 func get_objects_in_cell(cell: Vector2i) -> Array:
 	if _grid.has(cell):
@@ -78,15 +62,15 @@ func get_objects_in_cell(cell: Vector2i) -> Array:
 
 # Полная очистка объекта (при смерти/удалении)
 func remove_object(index: int) -> void:
-	var old_cell := _object_cells[index]
+	var old_cell := _object_last_cell_list[index]
 	if old_cell != EMPTY_CELL:
-		remove(index, old_cell)
-	_object_cells[index] = EMPTY_CELL
+		_remove(index, old_cell)
+	_object_last_cell_list[index] = EMPTY_CELL
 
 func clear():
 	_grid.clear()
-	for i in _object_cells.size():
-		_object_cells[i] = EMPTY_CELL
+	for i in _object_last_cell_list.size():
+		_object_last_cell_list[i] = EMPTY_CELL
 
 # --- Отладка: получение статистики ---
 func get_debug_info() -> Dictionary:
@@ -119,3 +103,19 @@ func draw_debug(canvas_item: CanvasItem, viewport_rect: Rect2, color: Color = Co
 	for y in range(int(start.y / _cell_size), int(end.y / _cell_size) + 1):
 		var pos_y = y * _cell_size
 		canvas_item.draw_line(Vector2(start.x, pos_y), Vector2(end.x, pos_y), color)
+
+## Добавляет индекс в ячейку
+func _add(index: int, cell: Vector2i) -> void:
+	if not _grid.has(cell):
+		_grid[cell] = []
+	var list: Array = _grid[cell]
+	if not list.has(index):
+		list.append(index)
+
+## Удаляет индекс из ячейки
+func _remove(index: int, cell: Vector2i) -> void:
+	if _grid.has(cell):
+		var list = _grid[cell]
+		list.erase(index)
+		if list.is_empty():
+			_grid.erase(cell)
