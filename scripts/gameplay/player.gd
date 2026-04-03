@@ -1,28 +1,21 @@
 class_name Player extends CharacterBody2D
 
-@export var health_comp: HealthComponent
+@export var health: Health
 @export var hurtbox: Area2D
+@export var iframe_timer: Timer
 
 @export_group("Оружие")
 @export var weapon_cooldown_timer: Timer
 @export var weapon: Weapon
 
+var in_iframe: bool
 var nearest_enemy
 var nearest_enemy_distance: float = INF
 
-# func damage(amount: float) -> void:
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body is Enemy:
-		health_comp.current_health -= body.damage
-
-func _on_iframe_ended() -> void:
-	pass
-
-func _on_weapon_timer_ended() -> void:
-	if nearest_enemy:
-		weapon.activate(self, nearest_enemy, get_tree())
+func _ready() -> void:
+	hurtbox.body_entered.connect(_on_body_entered)
+	weapon_cooldown_timer.timeout.connect(_on_weapon_timer_ended)
+	iframe_timer.timeout.connect(_on_iframe_timer_ended)
 
 func _physics_process(delta: float) -> void:
 	# Ближайший враг
@@ -39,6 +32,30 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _ready() -> void:
-	hurtbox.body_entered.connect(_on_body_entered)
-	weapon_cooldown_timer.timeout.connect(_on_weapon_timer_ended)
+#region Здоровье
+func damage(amount: float) -> void:
+	if in_iframe:
+		return
+	health.reduce(amount)
+	_start_iframe()
+
+func heal(amount: float) -> void:
+	health.restore(amount)
+#endregion
+
+#region IFrame
+func _on_iframe_timer_ended() -> void:
+	in_iframe = false
+
+func _start_iframe() -> void:
+	in_iframe = true
+	iframe_timer.start()
+#endregion
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		damage(body.damage)
+
+func _on_weapon_timer_ended() -> void:
+	if nearest_enemy:
+		weapon.activate(self, nearest_enemy, get_tree())

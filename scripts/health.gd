@@ -1,5 +1,6 @@
+@icon("res://editor/heart.svg")
 @abstract
-class_name Health
+class_name Health extends Node
 
 signal current_changed(old: float, new: float)
 signal max_changed(old: float, new: float)

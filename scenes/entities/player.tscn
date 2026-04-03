@@ -2,69 +2,43 @@
 
 [ext_resource type="Script" uid="uid://px6m1iiefgi4" path="res://scripts/gameplay/player.gd" id="1_3vyb7"]
 [ext_resource type="Resource" uid="uid://d0hdtlhr3daq5" path="res://resources/data/magic_missile.tres" id="2_5u6hq"]
-[ext_resource type="Texture2D" uid="uid://gt3n4w6115p8" path="res://assets/textures/16x16 Idle-Sheet.png" id="2_g2els"]
-[ext_resource type="Script" uid="uid://cicgreofvhr3c" path="res://scripts/gameplay/health_component.gd" id="3_1ie0h"]
-[ext_resource type="Script" uid="uid://bmvg5canqi8y8" path="res://scripts/gameplay/health_bar.gd" id="4_42nxq"]
-[ext_resource type="Script" uid="uid://wv7jkmicyn5s" path="res://scripts/gameplay/health_popup.gd" id="6_ss7kx"]
-[ext_resource type="PackedScene" uid="uid://bi8c4160mxpu3" path="res://scenes/ui/damage_popup.tscn" id="7_dnykm"]
+[ext_resource type="Script" uid="uid://cdj8dwnwkm46k" path="res://scripts/simple_health.gd" id="4_42nxq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1ie0h"]
+size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nckey"]
-radius = 13.0
+radius = 22.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
-atlas = ExtResource("2_g2els")
-region = Rect2(0, 0, 20, 20)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ie0h"]
+radius = 32.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42nxq"]
-radius = 15.0
-height = 42.0
-
-[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("health_comp", "hurtbox", "weapon_cooldown_timer")]
+[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("health", "hurtbox", "iframe_timer", "weapon_cooldown_timer")]
 collision_mask = 24
 script = ExtResource("1_3vyb7")
-health_comp = NodePath("Health/HealthComponent")
+health = NodePath("SimpleHealth")
 hurtbox = NodePath("Hurtbox")
+iframe_timer = NodePath("IFrameTimer")
 weapon_cooldown_timer = NodePath("WeaponTimer")
 weapon = ExtResource("2_5u6hq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1488387638]
-position = Vector2(0, 12)
-shape = SubResource("CircleShape2D_nckey")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=251279576]
-scale = Vector2(2.5, 2.5)
-texture = SubResource("AtlasTexture_qhqgy")
+texture = SubResource("PlaceholderTexture2D_1ie0h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1488387638]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_nckey")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1649323289]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1767769421]
-position = Vector2(0, 6)
-shape = SubResource("CapsuleShape2D_42nxq")
+shape = SubResource("CircleShape2D_1ie0h")
 
-[node name="Health" type="Node2D" parent="." unique_id=1515244992]
-
-[node name="HealthComponent" type="Node" parent="Health" unique_id=484350597]
-script = ExtResource("3_1ie0h")
-metadata/_custom_type_script = "uid://cicgreofvhr3c"
-
-[node name="HealthBar" type="ProgressBar" parent="Health" unique_id=88681699 node_paths=PackedStringArray("health_comp")]
-offset_left = -31.0
-offset_top = -53.0
-offset_right = 31.0
-offset_bottom = -47.0
-value = 100.0
-show_percentage = false
+[node name="SimpleHealth" type="Node" parent="." unique_id=249423448]
 script = ExtResource("4_42nxq")
-health_comp = NodePath("../HealthComponent")
-metadata/_custom_type_script = "uid://bmvg5canqi8y8"
-
-[node name="HealthPopup" type="Node2D" parent="Health" unique_id=1917355010 node_paths=PackedStringArray("health_comp")]
-script = ExtResource("6_ss7kx")
-health_comp = NodePath("../HealthComponent")
-damage_popup_scene = ExtResource("7_dnykm")
-metadata/_custom_type_script = "uid://wv7jkmicyn5s"
+metadata/_custom_type_script = "uid://cdj8dwnwkm46k"
 
 [node name="IFrameTimer" type="Timer" parent="." unique_id=1083941380]
 autostart = true
