@@ -15,14 +15,14 @@ pause_menu_scene = ExtResource("2_lbhrr")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=546700968]
 
 [node name="EnemySpawner" parent="." unique_id=912797544 node_paths=PackedStringArray("player") instance=ExtResource("3_iywne")]
-player = NodePath("../Playground/Player")
+player = NodePath("../Pausable/Player")
 
-[node name="Playground" type="Node2D" parent="." unique_id=1910238621]
+[node name="Pausable" type="Node2D" parent="." unique_id=1910238621]
 unique_name_in_owner = true
 process_mode = 1
 
-[node name="Level1" parent="Playground" unique_id=796088748 instance=ExtResource("1_yqjtg")]
+[node name="Level1" parent="Pausable" unique_id=796088748 instance=ExtResource("1_yqjtg")]
 
-[node name="Player" parent="Playground" unique_id=1560013250 instance=ExtResource("2_e2o6t")]
+[node name="Player" parent="Pausable" unique_id=1560013250 instance=ExtResource("2_e2o6t")]
 
-[node name="Camera2D" type="Camera2D" parent="Playground/Player" unique_id=609817685]
+[node name="Camera2D" type="Camera2D" parent="Pausable/Player" unique_id=609817685]
