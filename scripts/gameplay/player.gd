@@ -1,29 +1,21 @@
 class_name Player extends CharacterBody2D
 
-@export var health: Health
-@export var hurtbox: Area2D
-@export var iframe_timer: Timer
+@export var _damage_popup_scene: PackedScene
+
+@export var _health: Health
+@export var _iframe: IFrame
 
 @export_group("Оружие")
-@export var weapon_cooldown_timer: Timer
 @export var weapon: Weapon
 
-var in_iframe: bool
-var nearest_enemy
-var nearest_enemy_distance: float = INF
+func _process(delta: float) -> void:
+	var mouse_pos := get_global_mouse_position()
+	look_at(mouse_pos)
 
-func _ready() -> void:
-	hurtbox.body_entered.connect(_on_body_entered)
-	weapon_cooldown_timer.timeout.connect(_on_weapon_timer_ended)
-	iframe_timer.timeout.connect(_on_iframe_timer_ended)
+	if Input.is_action_just_pressed("attack"):
+		weapon.activate(self, mouse_pos, get_tree())
 
 func _physics_process(delta: float) -> void:
-	# Ближайший враг
-	if nearest_enemy:
-		nearest_enemy_distance = nearest_enemy.distance_to_player
-	else:
-		nearest_enemy_distance = INF
-
 	# Движение
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var speed = 300.0 #get_stat_value(Stat.Type.SPEED)
@@ -32,30 +24,17 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-#region Здоровье
-func damage(amount: float) -> void:
-	if in_iframe:
-		return
-	health.reduce(amount)
-	_start_iframe()
+func take_damage(amount: float) -> void:
+	if not _iframe.is_running():
+		_spawn_damage_popup(amount)
+		_health.reduce(amount)
+		_iframe.start()
 
-func heal(amount: float) -> void:
-	health.restore(amount)
-#endregion
+func take_heal(amount: float) -> void:
+	_health.restore(amount)
 
-#region IFrame
-func _on_iframe_timer_ended() -> void:
-	in_iframe = false
-
-func _start_iframe() -> void:
-	in_iframe = true
-	iframe_timer.start()
-#endregion
-
-func _on_body_entered(body: Node2D) -> void:
-	if body is Enemy:
-		damage(body.damage)
-
-func _on_weapon_timer_ended() -> void:
-	if nearest_enemy:
-		weapon.activate(self, nearest_enemy, get_tree())
+func _spawn_damage_popup(damage: float) -> void:
+	var popup: DamagePopup = _damage_popup_scene.instantiate()
+	popup.bind_damage(str(damage))
+	popup.global_position = global_position
+	get_parent().add_child(popup)

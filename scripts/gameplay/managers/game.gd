@@ -3,10 +3,29 @@ class_name Game extends Node
 signal exit_to_menu_requested()
 signal exit_app_requested()
 
+@export var player: Player
+@export var enemy_spawner: EnemySpawner
+@export_group("UI")
 @export var canvas: CanvasLayer
 @export var pause_menu_scene: PackedScene
 
 var _pause_menu: PauseMenu
+
+func _exit_tree() -> void:
+	# При переключении сцен может остаться пауза,
+	# поэтому гарантировано сбрасываем состояние при смене
+	get_tree().paused = false
+
+func _ready() -> void:
+	var player_state_reader := PlayerStateReader.new(player)
+	enemy_spawner.player = player_state_reader
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		if get_tree().paused:
+			resume()
+		else:
+			pause()
 
 func pause() -> void:
 	var tree := get_tree()
@@ -42,15 +61,3 @@ func _on_pause_menu_exit() -> void:
 
 	# 2. Потом сообщаем выше, что готовы закрыть сцену
 	exit_to_menu_requested.emit()
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		if get_tree().paused:
-			resume()
-		else:
-			pause()
-
-func _exit_tree() -> void:
-	# При переключении сцен может вызывать ошибку,
-	# поэтому гарантировано сбрасываем состояние при смене
-	get_tree().paused = false

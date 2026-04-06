@@ -1,10 +1,8 @@
 [gd_resource type="Resource" script_class="EnemyConfig" format=3 uid="uid://ci0igiucuf3pp"]
 
 [ext_resource type="Script" uid="uid://b3ghyv70r7uoi" path="res://scripts/gameplay/data/enemy_config.gd" id="1_xvmtx"]
-[ext_resource type="Texture2D" uid="uid://gt3n4w6115p8" path="res://assets/textures/16x16 Idle-Sheet.png" id="2_vt3d2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ml36g"]
-atlas = ExtResource("2_vt3d2")
 region = Rect2(0, 0, 20, 20)
 
 [resource]

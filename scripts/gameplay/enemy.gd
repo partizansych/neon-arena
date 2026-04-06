@@ -1,38 +1,34 @@
 class_name Enemy extends CharacterBody2D
 
-@export var sprite: Sprite2D
+@export var _damage_popup_scene: PackedScene
 
-var player_ref: Player
-var speed: float = 75.0
-var damage: float
-var knockback: Vector2
+@export var _health: Health
+@export var _iframe: IFrame
 
-var distance_to_player: float = INF
+@export var speed: float = 75.0
+@export var damage: float = 2.0
 
-func setup(config: EnemyConfig) -> void:
-	sprite.texture = config.texture
-	damage = config.damage
+var player: PlayerStateReader
+
+func _process(delta: float) -> void:
+	look_at(player.get_pos())
 
 func _physics_process(delta: float) -> void:
-	# Дистанция
-	distance_to_player = global_position.distance_to(player_ref.global_position)
-	if distance_to_player > 800.0:
-		queue_free()
-	if distance_to_player < player_ref.nearest_enemy_distance:
-		player_ref.nearest_enemy = self
+	var dir_to_player := global_position.direction_to(player.get_pos())
 	
-	# Движение
-	var direction := global_position.direction_to(player_ref.global_position)
-	var vel := direction * speed
-	knockback = knockback.move_toward(Vector2.ZERO, 1.0)
-	vel += knockback
-	
-	# Эффект роя
-	var collision := move_and_collide(vel* delta)
-	if collision:
-		var collider := collision.get_collider()
-		if collider is Enemy:
-			collider.knockback = global_position.direction_to(collider.global_position) * 50.0
+	move_and_collide(dir_to_player * speed * delta)
 
-# func _ready() -> void:
-	
+func take_damage(amount: float) -> void:
+	if not _iframe.is_running():
+		_spawn_damage_popup(amount)
+		_health.reduce(amount)
+		_iframe.start()
+
+func take_heal(amount: float) -> void:
+	_health.restore(amount)
+
+func _spawn_damage_popup(damage: float) -> void:
+	var popup: DamagePopup = _damage_popup_scene.instantiate()
+	popup.bind_damage(str(damage))
+	popup.global_position = global_position
+	get_parent().add_child(popup)

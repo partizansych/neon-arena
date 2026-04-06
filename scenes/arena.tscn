@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cfa3f0hboird"]
+
+[sub_resource type="Environment" id="Environment_ug7gw"]
+background_mode = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl4x5"]
+size = Vector2(100, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olpmc"]
+size = Vector2(1920, 100)
+
+[node name="Arena" type="Node2D" unique_id=1406537670]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=585397420]
+environment = SubResource("Environment_ug7gw")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1038275521]
+collision_layer = 64
+collision_mask = 0
+
+[node name="Border" type="Polygon2D" parent="Walls" unique_id=786533800]
+color = Color(0.27450982, 0.23529412, 0.36862746, 1)
+invert_enabled = true
+polygon = PackedVector2Array(960, 5, 960, 540, -960, 540, -960, -540, 960, -540)
+uv = PackedVector2Array(-152, -56, 56, -48, -56, 40, -216, 64)
+
+[node name="Left" type="CollisionShape2D" parent="Walls" unique_id=257119779]
+position = Vector2(-1010, 0)
+shape = SubResource("RectangleShape2D_wl4x5")
+
+[node name="Right" type="CollisionShape2D" parent="Walls" unique_id=40714713]
+position = Vector2(1010, 0)
+shape = SubResource("RectangleShape2D_wl4x5")
+
+[node name="Upper" type="CollisionShape2D" parent="Walls" unique_id=854847924]
+position = Vector2(0, -590)
+shape = SubResource("RectangleShape2D_olpmc")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=1894048918]
+position = Vector2(0, 590)
+shape = SubResource("RectangleShape2D_olpmc")
+
+[node name="Floor" type="Polygon2D" parent="." unique_id=1600500757]
+color = Color(0.3647059, 0.2784314, 0.4627451, 1)
+polygon = PackedVector2Array(960, 5, 960, 540, -960, 540, -960, -540, 960, -540)
+uv = PackedVector2Array(-152, -56, 56, -48, -56, 40, -216, 64)

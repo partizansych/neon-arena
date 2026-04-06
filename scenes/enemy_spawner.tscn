@@ -2,16 +2,11 @@
 
 [ext_resource type="Script" uid="uid://d28w5mpx6cvg7" path="res://scripts/gameplay/enemy_spawner.gd" id="1_ks1gq"]
 [ext_resource type="PackedScene" uid="uid://c8xdyjvougo1q" path="res://scenes/entities/enemy.tscn" id="2_devoi"]
-[ext_resource type="Script" uid="uid://b3ghyv70r7uoi" path="res://scripts/gameplay/data/enemy_config.gd" id="2_xl0gr"]
-[ext_resource type="Resource" uid="uid://ci0igiucuf3pp" path="res://resources/data/dvoynik.tres" id="3_ih16b"]
-[ext_resource type="Resource" uid="uid://kf7l5i0d3uje" path="res://resources/data/soldier.tres" id="4_ih16b"]
-[ext_resource type="Resource" uid="uid://bwqndj7lm70le" path="res://resources/data/orc.tres" id="6_txvhj"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=912797544 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_ks1gq")
 timer = NodePath("Timer")
 enemy_scene = ExtResource("2_devoi")
-enemy_configs = Array[ExtResource("2_xl0gr")]([ExtResource("3_ih16b"), ExtResource("4_ih16b"), ExtResource("6_txvhj")])
 
 [node name="Timer" type="Timer" parent="." unique_id=1155182982]
 autostart = true

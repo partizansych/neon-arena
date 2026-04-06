@@ -1,10 +1,8 @@
 [gd_resource type="Resource" script_class="EnemyConfig" format=3 uid="uid://kf7l5i0d3uje"]
 
 [ext_resource type="Script" uid="uid://b3ghyv70r7uoi" path="res://scripts/gameplay/data/enemy_config.gd" id="1_d2yq0"]
-[ext_resource type="Texture2D" uid="uid://cxmmvsf0f3p3r" path="res://assets/textures/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier.png" id="2_hgp24"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43u8w"]
-atlas = ExtResource("2_hgp24")
 region = Rect2(0, 0, 100, 100)
 
 [resource]
