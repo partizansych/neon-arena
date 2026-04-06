@@ -7,5 +7,5 @@ class_name Weapon extends Resource
 @export var speed: float
 @export var scene: PackedScene
 
-func activate(source: Node2D, target: Node2D, tree: SceneTree) -> void:
+func activate(source: Node2D, target_pos: Vector2, tree: SceneTree) -> void:
 	pass
