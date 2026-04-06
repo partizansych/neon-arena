@@ -1,9 +1,6 @@
 class_name SimpleHealth extends Health
 
-var _max: float
-
-func _init(max_value: float = 100.0) -> void:
-	set_max(max_value)
+@export var _max: float = 100.0
 
 func get_max() -> float:
 	return _max

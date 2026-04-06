@@ -8,6 +8,9 @@ signal died()
 
 var _current: float
 
+func _ready() -> void:
+	_current = get_max()
+
 @abstract
 func get_max() -> float
 
