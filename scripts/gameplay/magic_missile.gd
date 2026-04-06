@@ -16,7 +16,7 @@ func _on_lifetime_timeout() -> void:
 	queue_free()
 
 func _physics_process(delta: float) -> void:
-	position += direction * speed * delta
+	global_position += direction * speed * delta
 
 func _ready() -> void:
 	body_entered.connect(_on_body_enter)
