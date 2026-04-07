@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://px6m1iiefgi4" path="res://scripts/gameplay/player.gd" id="1_3vyb7"]
 [ext_resource type="Resource" uid="uid://d0hdtlhr3daq5" path="res://resources/data/magic_missile.tres" id="2_5u6hq"]
-[ext_resource type="PackedScene" uid="uid://bi8c4160mxpu3" path="res://scenes/ui/damage_popup.tscn" id="2_d4qa6"]
 [ext_resource type="Script" uid="uid://b04ybibtejtvw" path="res://scripts/gameplay/iframe.gd" id="4_5u6hq"]
-[ext_resource type="Script" uid="uid://cdj8dwnwkm46k" path="res://scripts/simple_health.gd" id="4_42nxq"]
+[ext_resource type="Script" uid="uid://cdj8dwnwkm46k" path="res://scripts/gameplay/simple_health.gd" id="4_42nxq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42nxq"]
 radius = 16.0
@@ -12,7 +11,6 @@ radius = 16.0
 [node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("_health", "_iframe")]
 collision_mask = 88
 script = ExtResource("1_3vyb7")
-damage_popup_scene = ExtResource("2_d4qa6")
 _health = NodePath("SimpleHealth")
 _iframe = NodePath("IFrame")
 weapon = ExtResource("2_5u6hq")

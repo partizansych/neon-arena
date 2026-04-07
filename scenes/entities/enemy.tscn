@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8xdyjvougo1q"]
 
 [ext_resource type="Script" uid="uid://3mqj0m668aeh" path="res://scripts/gameplay/enemy.gd" id="1_md0e3"]
-[ext_resource type="Script" uid="uid://cdj8dwnwkm46k" path="res://scripts/simple_health.gd" id="2_67neu"]
+[ext_resource type="Script" uid="uid://cdj8dwnwkm46k" path="res://scripts/gameplay/simple_health.gd" id="2_67neu"]
 [ext_resource type="PackedScene" uid="uid://bi8c4160mxpu3" path="res://scenes/ui/damage_popup.tscn" id="2_defa4"]
 [ext_resource type="Script" uid="uid://b04ybibtejtvw" path="res://scripts/gameplay/iframe.gd" id="3_ktqfp"]
 
