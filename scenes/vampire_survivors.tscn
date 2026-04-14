@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://v5c308f2u6pj"]
+
+[ext_resource type="Script" uid="uid://d2uiwu7uqgwkk" path="res://scripts/ecs/VampireSurvivors.cs" id="1_vme1i"]
+
+[node name="Node" type="Node" unique_id=831217845]
+script = ExtResource("1_vme1i")
