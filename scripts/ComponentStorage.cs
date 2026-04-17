@@ -1,8 +1,10 @@
-// 2. Хранилище компонентов одного типа
 public interface IComponentStorage
 {
     void Clear(int index);
 }
+
+// В данном примере ComponentStorage<T> выделяет память под компоненты сразу на capacity сущностей (массив Data).
+// Однако не у каждой сущности из этого диапазона обязательно есть компонент типа T.
 
 namespace NeonArena.scripts
 {

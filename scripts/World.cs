@@ -6,7 +6,8 @@ namespace NeonArena.scripts
 	// 3. Мир (Registry)
 	public class World
 	{
-		private readonly int _maxEntities;
+		public int MaxEntities { get; private set; }
+
 		private readonly bool[] _alive;
 		private readonly int[] _freeList;
 		private int _freeHead;
@@ -14,7 +15,7 @@ namespace NeonArena.scripts
 
 		public World(int maxEntities)
 		{
-			_maxEntities = maxEntities;
+			MaxEntities = maxEntities;
 			_alive = new bool[maxEntities];
 			_freeList = new int[maxEntities];
 
@@ -31,7 +32,7 @@ namespace NeonArena.scripts
 			var type = typeof(T);
 			if (!_storages.TryGetValue(type, out var storage))
 			{
-				storage = new ComponentStorage<T>(_maxEntities);
+				storage = new ComponentStorage<T>(MaxEntities);
 				_storages[type] = storage;
 			}
 			return (ComponentStorage<T>)storage;
@@ -39,7 +40,7 @@ namespace NeonArena.scripts
 
 		public bool IsAlive(int id)
 		{
-			return id >= 0 && id < _maxEntities && _alive[id];
+			return id >= 0 && id < MaxEntities && _alive[id];
 		}
 
 		public int Create()
