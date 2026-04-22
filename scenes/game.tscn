@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://di2rik1fabq2j" path="res://scenes/entities/player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://2i4r80mn5c8m" path="res://scenes/ui/pause_menu.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://8b6ol3wax8wd" path="res://scenes/enemy_spawner.tscn" id="3_iywne"]
-[ext_resource type="PackedScene" uid="uid://cfa3f0hboird" path="res://scenes/arena.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://cfa3f0hboird" path="res://migrating/arena.tscn" id="3_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=1325132745 node_paths=PackedStringArray("player", "enemy_spawner", "canvas")]
 process_mode = 3

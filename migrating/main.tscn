@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://5yymbxu6ogbx"]
+
+[ext_resource type="Script" uid="uid://bw8ialnxy6ql4" path="res://migrating/Main.cs" id="1_2rlxk"]
+[ext_resource type="PackedScene" uid="uid://cfa3f0hboird" path="res://migrating/arena.tscn" id="2_6qosk"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6qosk"]
+size = Vector2(64, 64)
+
+[node name="Main" type="Node2D" unique_id=1241429941 node_paths=PackedStringArray("testNode")]
+script = ExtResource("1_2rlxk")
+testNode = NodePath("Sprite2D")
+
+[node name="Arena" parent="." unique_id=1406537670 instance=ExtResource("2_6qosk")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1948959282]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1780003046]
+texture = SubResource("PlaceholderTexture2D_6qosk")

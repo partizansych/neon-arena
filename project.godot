@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Neon Arena"
-run/main_scene="uid://bbh1ep81f6f3g"
-config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="uid://5yymbxu6ogbx"
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

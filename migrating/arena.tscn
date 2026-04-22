@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cfa3f0hboird"]
 
-[sub_resource type="Environment" id="Environment_ug7gw"]
-background_mode = 3
+[ext_resource type="Script" uid="uid://c4bmx4lfx7vm8" path="res://migrating/Arena.cs" id="1_hd6e7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wl4x5"]
 size = Vector2(100, 1080)
@@ -9,10 +8,9 @@ size = Vector2(100, 1080)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olpmc"]
 size = Vector2(1920, 100)
 
-[node name="Arena" type="Node2D" unique_id=1406537670]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=585397420]
-environment = SubResource("Environment_ug7gw")
+[node name="Arena" type="Node2D" unique_id=1406537670 node_paths=PackedStringArray("spawnpoints")]
+script = ExtResource("1_hd6e7")
+spawnpoints = []
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=1038275521]
 collision_layer = 64
