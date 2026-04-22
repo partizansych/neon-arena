@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d2urdm3ltcdy"]
+
+[ext_resource type="Script" uid="uid://cklsipkexwa21" path="res://scripts/VampireSurvivor.cs" id="1_6r00q"]
+[ext_resource type="Script" uid="uid://xuwv6r4yqfw8" path="res://scripts/EcsNode2D.cs" id="2_ignic"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ignic"]
+size = Vector2(32, 32)
+
+[node name="Node" type="Node" unique_id=133306859 node_paths=PackedStringArray("testNode")]
+script = ExtResource("1_6r00q")
+testNode = NodePath("Node2D")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1531978504]
+script = ExtResource("2_ignic")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=672688587]
+texture = SubResource("PlaceholderTexture2D_ignic")

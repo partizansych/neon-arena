@@ -1,3 +1,5 @@
+using MyECS.Core;
+
 namespace NeonArena.scripts
 {
 	public abstract class SystemBase(World world)

@@ -1,46 +1,40 @@
 using Godot;
-using System;
+using MyECS.Core;
 
 namespace NeonArena.scripts
 {
 	public partial class EcsNode2D : Node2D
 	{
-        public int EntityId { get; private set; }
-        private World World { get; set; }
-	
-		private ComponentStorage<Position> _positions;
+		public Entity Entity { get; private set; }
+		private World World { get; set; }
 
-		public void Bind(int entityId, World world)
+		public void Bind(Entity entity, World world)
 		{
 			World = world;
-			EntityId = entityId;
-
-			_positions = world.GetStorage<Position>();
+			Entity = entity;
 		}
 
 		public override void _Process(double delta)
 		{
 			// ОБРАЩАЕТСЯ К МИРУ
-			if (!World.IsAlive(EntityId))
+			if (!World.IsAlive(Entity))
 			{
 				QueueFree();
 				return;
 			}
 
-			if (_positions.Has[EntityId])
+			if (World.HasComponent<Position>(Entity))
 			{
-				var globalPos = GlobalPosition;
-				var ecsGlobalPos = _positions.Get(EntityId).Value;
-
-				if (globalPos != ecsGlobalPos)
-					GlobalPosition = ecsGlobalPos;
+				var posComp = World.GetComponent<Position>(Entity);
+				if (GlobalPosition != posComp.Value)
+					GlobalPosition = posComp.Value;
 			}
 		}
 
 		public override void _ExitTree()
 		{
-			if (World != null && World.IsAlive(EntityId))
-				World.Destroy(EntityId);
+			if (World != null && World.IsAlive(Entity))
+				World.DestroyEntity(Entity);
 		}
 	}
 }
