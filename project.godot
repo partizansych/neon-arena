@@ -32,14 +32,9 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 
-[file_customization]
+[dotnet]
 
-folder_colors={
-"res://assets/": "yellow",
-"res://resources/": "orange",
-"res://scenes/": "purple",
-"res://scripts/": "blue"
-}
+project/assembly_name="Neon Arena"
 
 [input]
 
