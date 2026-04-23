@@ -11,4 +11,5 @@ namespace NeonArena.migrating.ecs
 
     public struct IsDead { }
     public struct IsPlayer { }
+    public record struct IsInput { }
 }
