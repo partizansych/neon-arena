@@ -1,5 +1,6 @@
-class_name StatType
-enum {
+class_name Enum
+
+enum Stat {
 	SPEED,
 	MAX_HP,
 	HP_REGEN,

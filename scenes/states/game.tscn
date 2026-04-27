@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://onedf7dy6c57"]
+
+[ext_resource type="Script" uid="uid://wdr76olwybsn" path="res://scripts/gameplay/managers/game.gd" id="1_t7oq8"]
+[ext_resource type="PackedScene" uid="uid://2i4r80mn5c8m" path="res://scenes/ui/pause_menu.tscn" id="2_tw1mx"]
+[ext_resource type="Script" uid="uid://d28w5mpx6cvg7" path="res://scripts/gameplay/enemy_spawner.gd" id="3_myi7o"]
+[ext_resource type="Script" uid="uid://bq4aajmghvbw5" path="res://scripts/damage_popup_manager.gd" id="3_tw1mx"]
+[ext_resource type="PackedScene" uid="uid://bi8c4160mxpu3" path="res://scenes/ui/damage_popup.tscn" id="4_14tq5"]
+[ext_resource type="Script" uid="uid://dl3mw7uvwlqe5" path="res://scripts/gameplay/data/enemy_data.gd" id="4_d5iu6"]
+[ext_resource type="PackedScene" uid="uid://cfa3f0hboird" path="res://scenes/arena.tscn" id="4_myi7o"]
+[ext_resource type="PackedScene" uid="uid://c8xdyjvougo1q" path="res://scenes/enemy.tscn" id="4_nmc3g"]
+[ext_resource type="PackedScene" uid="uid://di2rik1fabq2j" path="res://scenes/player.tscn" id="5_nmc3g"]
+
+[sub_resource type="Resource" id="Resource_ddqji"]
+script = ExtResource("4_d5iu6")
+speed = 100.0
+damage = 15.0
+scene = ExtResource("4_nmc3g")
+metadata/_custom_type_script = "uid://dl3mw7uvwlqe5"
+
+[node name="Game" type="Node2D" unique_id=1325132745 node_paths=PackedStringArray("player", "enemy_spawner", "canvas")]
+process_mode = 3
+script = ExtResource("1_t7oq8")
+player = NodePath("Pausable/Player")
+enemy_spawner = NodePath("Pausable/EnemySpawner")
+canvas = NodePath("UILayer")
+pause_menu_scene = ExtResource("2_tw1mx")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=546700968]
+follow_viewport_enabled = true
+
+[node name="Pausable" type="Node2D" parent="." unique_id=1100725240]
+unique_name_in_owner = true
+process_mode = 1
+
+[node name="EnemySpawner" type="Node2D" parent="Pausable" unique_id=912797544]
+script = ExtResource("3_myi7o")
+enemies_data = Array[ExtResource("4_d5iu6")]([SubResource("Resource_ddqji")])
+
+[node name="Timer" type="Timer" parent="Pausable/EnemySpawner" unique_id=1155182982]
+autostart = true
+
+[node name="Arena" parent="Pausable" unique_id=1406537670 instance=ExtResource("4_myi7o")]
+
+[node name="Player" parent="Pausable" unique_id=1560013250 instance=ExtResource("5_nmc3g")]
+
+[node name="Camera2D" type="Camera2D" parent="Pausable/Player" unique_id=232413997]
+
+[node name="DamagePopupManager" type="Node2D" parent="." unique_id=1233380451]
+script = ExtResource("3_tw1mx")
+popup_scene = ExtResource("4_14tq5")
+
+[node name="DamagePopup" parent="DamagePopupManager" unique_id=2058363187 instance=ExtResource("4_14tq5")]

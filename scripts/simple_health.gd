@@ -1,3 +1,4 @@
+@icon("res://editor/heart.svg")
 class_name SimpleHealth extends Health
 
 @export var _max: float = 100.0

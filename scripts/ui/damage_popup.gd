@@ -1,4 +1,4 @@
-class_name DamagePopup extends Control
+class_name DamagePopup extends Node2D
 
 @export var label: Label
 

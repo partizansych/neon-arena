@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://d4horu3d16qxt"]
+
+[ext_resource type="Script" uid="uid://ddg121klmqwlh" path="res://scripts/gameplay/data/weapon_data.gd" id="1_o2tv3"]
+[ext_resource type="Script" uid="uid://dwuflxqyfpv62" path="res://scripts/gameplay/data/fan_shot_strategy.gd" id="1_ux4bi"]
+[ext_resource type="Texture2D" uid="uid://ddh5k3ht0ufeo" path="res://assets/textures/64x64.png" id="2_bmysw"]
+
+[sub_resource type="Resource" id="Resource_d5mm6"]
+script = ExtResource("1_ux4bi")
+metadata/_custom_type_script = "uid://dwuflxqyfpv62"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux4bi"]
+atlas = ExtResource("2_bmysw")
+region = Rect2(896, 4608, 64, 64)
+
+[resource]
+script = ExtResource("1_o2tv3")
+name = "Multiple Magic Missile"
+texture = SubResource("AtlasTexture_ux4bi")
+damage = 15.0
+attack_strategy = SubResource("Resource_d5mm6")
+metadata/_custom_type_script = "uid://ddg121klmqwlh"

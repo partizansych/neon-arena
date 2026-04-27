@@ -17,8 +17,8 @@ func _exit_tree() -> void:
 	get_tree().paused = false
 
 func _ready() -> void:
-	var player_state_reader := PlayerStateReader.new(player)
-	enemy_spawner.player = player_state_reader
+	enemy_spawner.bind_player(player)
+	enemy_spawner.bind_enemies_parent(%Pausable)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):

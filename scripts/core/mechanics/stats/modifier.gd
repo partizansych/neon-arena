@@ -5,5 +5,6 @@ class_name Modifier extends Resource
 
 enum Type {
 	FLAT,
-	ADDITIVE
+	ADDITIVE,
+	MULTIPLICATIVE
 }

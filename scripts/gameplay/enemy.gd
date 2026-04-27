@@ -1,34 +1,23 @@
-class_name Enemy extends CharacterBody2D
-
-@export var _damage_popup_scene: PackedScene
-
-@export var _health: Health
-@export var _iframe: IFrame
+class_name Enemy extends Character
 
 @export var speed: float = 75.0
-@export var damage: float = 2.0
 
-var player: PlayerStateReader
+var _target: Node2D
+
+func setup(data: EnemyData) -> void:
+	speed = data.speed
+	$Hitbox2D.damage = data.damage
+	if data.material != null:
+		global_scale *= 1.5
+
+func set_target(target: Node2D) -> void:
+	_target = target
 
 func _process(delta: float) -> void:
-	look_at(player.get_pos())
+	if _target:
+		look_at(_target.global_position)
 
 func _physics_process(delta: float) -> void:
-	var dir_to_player := global_position.direction_to(player.get_pos())
-	
+	if _target == null: return
+	var dir_to_player := global_position.direction_to(_target.global_position)
 	move_and_collide(dir_to_player * speed * delta)
-
-func take_damage(amount: float) -> void:
-	if not _iframe.is_running():
-		_spawn_damage_popup(amount)
-		_health.reduce(amount)
-		_iframe.start()
-
-func take_heal(amount: float) -> void:
-	_health.restore(amount)
-
-func _spawn_damage_popup(damage: float) -> void:
-	var popup: DamagePopup = _damage_popup_scene.instantiate()
-	popup.bind_damage(str(damage))
-	popup.global_position = global_position
-	get_parent().add_child(popup)

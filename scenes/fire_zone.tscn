@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bikndqsddahd"]
+
+[ext_resource type="Script" uid="uid://dmm3qdtvse180" path="res://scripts/hazard_zone.gd" id="1_t5u7e"]
+
+[node name="FireZone" type="Node2D" unique_id=1872597179]
+script = ExtResource("1_t5u7e")

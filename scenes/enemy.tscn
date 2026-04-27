@@ -2,20 +2,20 @@
 
 [ext_resource type="Script" uid="uid://3mqj0m668aeh" path="res://scripts/gameplay/enemy.gd" id="1_md0e3"]
 [ext_resource type="Script" uid="uid://cdj8dwnwkm46k" path="res://scripts/simple_health.gd" id="2_67neu"]
-[ext_resource type="PackedScene" uid="uid://bi8c4160mxpu3" path="res://scenes/ui/damage_popup.tscn" id="2_defa4"]
 [ext_resource type="Script" uid="uid://b04ybibtejtvw" path="res://scripts/gameplay/iframe.gd" id="3_ktqfp"]
+[ext_resource type="Script" uid="uid://8ayx028l0fqi" path="res://scripts/hitbox_2d.gd" id="4_5uy6h"]
+[ext_resource type="Script" uid="uid://do7rvyqobn0pv" path="res://scripts/hurtbox_2d.gd" id="5_c4w8v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7j71"]
 radius = 32.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=196973036 node_paths=PackedStringArray("_health", "_iframe")]
+[node name="Enemy" type="CharacterBody2D" unique_id=196973036 node_paths=PackedStringArray("health", "iframe") groups=["characters"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_md0e3")
-_damage_popup_scene = ExtResource("2_defa4")
-_health = NodePath("SimpleHealth")
-_iframe = NodePath("IFrame")
 speed = 100.0
+health = NodePath("SimpleHealth")
+iframe = NodePath("IFrame")
 metadata/_custom_type_script = "uid://3mqj0m668aeh"
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=584925516]
@@ -36,9 +36,26 @@ metadata/_custom_type_script = "uid://cdj8dwnwkm46k"
 script = ExtResource("3_ktqfp")
 metadata/_custom_type_script = "uid://b04ybibtejtvw"
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1247311703]
+[node name="Hitbox2D" type="Area2D" parent="." unique_id=1240719001]
+collision_layer = 8
+collision_mask = 128
+script = ExtResource("4_5uy6h")
+metadata/_custom_type_script = "uid://8ayx028l0fqi"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=515952143]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox2D" unique_id=515952143]
 position = Vector2(4.600006, -0.19999695)
 rotation = 1.5707964
+scale = Vector2(0.875, 0.875)
+polygon = PackedVector2Array(-16.00001, -16, -9.536743e-06, -72, 15.99999, -15.999997, 47.999977, -16, 23.99999, 8.000004, 31.999975, 40.000004, -9.536743e-06, 23.999996, -32.000023, 40.000004, -24.000025, 8.000004, -48.000008, -16)
+
+[node name="Hurtbox2D" type="Area2D" parent="." unique_id=582581614]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("5_c4w8v")
+metadata/_custom_type_script = "uid://do7rvyqobn0pv"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox2D" unique_id=1282749499]
+position = Vector2(4.600006, -0.19999695)
+rotation = 1.5707964
+scale = Vector2(0.875, 0.875)
 polygon = PackedVector2Array(-16.00001, -16, -9.536743e-06, -72, 15.99999, -15.999997, 47.999977, -16, 23.99999, 8.000004, 31.999975, 40.000004, -9.536743e-06, 23.999996, -32.000023, 40.000004, -24.000025, 8.000004, -48.000008, -16)

@@ -74,16 +74,21 @@ func remove_modifiers_from_source(source: Variant) -> int:
 	return was_removed
 
 func _calculate() -> float:
-	var total = _base_value
-	var additive_multiplier = 1.0
+	var flat_sum := 0.0
+	var additive_sum := 0.0
+	var multiplicativeMult := 1.0
+	
+	for active in _active_mods:
+		var mod := active.mod
+		match mod.type:
+			Modifier.Type.FLAT:
+				flat_sum += mod.value
+			Modifier.Type.ADDITIVE:
+				additive_sum += mod.value
+			Modifier.Type.MULTIPLICATIVE:
+				multiplicativeMult *= 1.0 + mod.value
 
-	for active_mod in _active_mods:
-		if active_mod.mod.type == Modifier.Type.FLAT:
-			total += active_mod.mod.value
-		else:
-			additive_multiplier += active_mod.mod.value
-
-	return total * additive_multiplier
+	return (_base_value + flat_sum) * (1.0 + additive_sum) * multiplicativeMult
 
 class ActiveModifier:
 	var mod: Modifier

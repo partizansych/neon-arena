@@ -1,21 +1,20 @@
 [gd_scene format=3 uid="uid://di2rik1fabq2j"]
 
 [ext_resource type="Script" uid="uid://px6m1iiefgi4" path="res://scripts/gameplay/player.gd" id="1_3vyb7"]
-[ext_resource type="Resource" uid="uid://d0hdtlhr3daq5" path="res://resources/data/magic_missile.tres" id="2_5u6hq"]
-[ext_resource type="PackedScene" uid="uid://bi8c4160mxpu3" path="res://scenes/ui/damage_popup.tscn" id="2_d4qa6"]
 [ext_resource type="Script" uid="uid://b04ybibtejtvw" path="res://scripts/gameplay/iframe.gd" id="4_5u6hq"]
 [ext_resource type="Script" uid="uid://cdj8dwnwkm46k" path="res://scripts/simple_health.gd" id="4_42nxq"]
+[ext_resource type="Script" uid="uid://chahtedoiic33" path="res://scripts/weapon_controller.gd" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://do7rvyqobn0pv" path="res://scripts/hurtbox_2d.gd" id="5_qlg0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42nxq"]
 radius = 16.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("_health", "_iframe")]
+[node name="Player" type="CharacterBody2D" unique_id=1560013250 node_paths=PackedStringArray("health", "iframe") groups=["characters"]]
+collision_layer = 129
 collision_mask = 88
 script = ExtResource("1_3vyb7")
-damage_popup_scene = ExtResource("2_d4qa6")
-_health = NodePath("SimpleHealth")
-_iframe = NodePath("IFrame")
-weapon = ExtResource("2_5u6hq")
+health = NodePath("SimpleHealth")
+iframe = NodePath("IFrame")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1469710930]
 rotation = 1.5707964
@@ -34,5 +33,19 @@ metadata/_custom_type_script = "uid://cdj8dwnwkm46k"
 script = ExtResource("4_5u6hq")
 metadata/_custom_type_script = "uid://b04ybibtejtvw"
 
-[node name="WeaponTimer" type="Timer" parent="." unique_id=1469174754]
-autostart = true
+[node name="WeaponController" type="Node2D" parent="." unique_id=1475509400]
+script = ExtResource("4_dqkch")
+metadata/_custom_type_script = "uid://chahtedoiic33"
+
+[node name="HeavyReloadTimer" type="Timer" parent="WeaponController" unique_id=221514239]
+
+[node name="PrimaryReloadTimer" type="Timer" parent="WeaponController" unique_id=1946527706]
+
+[node name="Hurtbox2D" type="Area2D" parent="." unique_id=96273849]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("5_qlg0r")
+metadata/_custom_type_script = "uid://do7rvyqobn0pv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox2D" unique_id=569983186]
+shape = SubResource("CircleShape2D_42nxq")
